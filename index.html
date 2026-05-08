@@ -21,20 +21,18 @@
         .btn:hover { background: #cc0000; transform: scale(1.05); }
 
         /* Rules Container */
-        .rules-container { max-width: 800px; margin: 50px auto; background: #121212; border-radius: 10px; overflow: hidden; text-align: left; border: 1px solid #333; }
+        .rules-container { max-width: 800px; margin: 50px auto; background: #121212; border-radius: 10px; overflow: hidden; text-align: left; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        /* Sidebar/Tab Style */
-        .rules-nav { background: #181818; padding: 10px; display: flex; border-bottom: 1px solid #333; }
-        .rules-nav div { padding: 10px 20px; color: #888; font-weight: bold; cursor: pointer; }
-        .rules-nav div.active { color: #ff4d4d; border-left: 3px solid #ff4d4d; background: #222; }
+        .rules-nav { background: #181818; padding: 15px; border-bottom: 1px solid #333; }
+        .rules-nav span { color: #ff4d4d; font-weight: bold; border-left: 3px solid #ff4d4d; padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
 
         .rules-content { padding: 30px; }
-        .rules-content h2 { color: #fff; border-bottom: 1px solid #333; padding-bottom: 10px; text-align: center; }
+        .rules-content h2 { color: #fff; border-bottom: 1px solid #333; padding-bottom: 10px; text-align: center; margin-top: 0; }
         .rules-list { list-style: none; padding: 0; margin-top: 20px; }
-        .rules-list li { padding: 8px 0; color: #ccc; border-bottom: 1px solid #1e1e1e; font-size: 0.95rem; }
-        .rules-list li::before { content: "• "; color: #ff4d4d; font-weight: bold; margin-right: 10px; }
+        .rules-list li { padding: 12px 0; color: #ccc; border-bottom: 1px solid #1e1e1e; font-size: 1rem; display: flex; align-items: center; }
+        .rules-list li::before { content: "✔"; color: #ff4d4d; font-weight: bold; margin-right: 15px; }
         
-        .allowed { color: #2ecc71; font-weight: bold; }
+        .highlight { color: #ff4d4d; font-weight: bold; }
 
         .info-section { padding: 50px 20px; background: #000; }
         .ip-box { background: #111; padding: 25px; border-radius: 10px; display: inline-block; border: 2px solid #ff4d4d; margin-top: 20px; }
@@ -66,36 +64,27 @@
 
 <section class="rules-container">
     <div class="rules-nav">
-        <div class="active">MINECRAFT SERVER</div>
+        <span>Official Server Rules</span>
     </div>
     
     <div class="rules-content">
-        <h2>Delux SMP Rules</h2>
-        <p style="color: #888; font-size: 0.9rem;">আমাদের সার্ভারে নিচের কাজগুলো কঠোরভাবে নিষিদ্ধ:</p>
+        <h2>সার্ভারের নিয়মাবলী</h2>
         
         <ul class="rules-list">
-            <li>Spamming (স্প্যামিং করা)</li>
-            <li>Disrespectful behavior (অসম্মানজনক আচরণ)</li>
-            <li>Bigotry (বর্ণবাদ বা লিঙ্গ বৈষম্যমূলক মন্তব্য)</li>
-            <li>Griefing/Stealing (<span class="allowed">LIFESTEAL এ অনুমতি আছে</span>)</li>
-            <li>Staff disrespect (স্টাফদের সাথে খারাপ ব্যবহার)</li>
-            <li>Advertising/Self-promotion (বিজ্ঞাপন দেওয়া)</li>
-            <li>Use of unfair advantage (অসাধু উপায় অবলম্বন)</li>
-            <li>Client modifications (হ্যাক বা অতিরিক্ত সুবিধা দেয় এমন মোড)</li>
-            <li>Bypassing disciplinary actions (শাস্তি এড়ানোর চেষ্টা)</li>
-            <li>Fighting/Drama (ঝগড়া বা অপ্রয়োজনীয় ঝামেলা)</li>
-            <li>Use of inappropriate usernames or skins (অশালীন নাম বা স্কিন)</li>
-            <li>Discussing politics/religion (রাজনীতি বা ধর্ম নিয়ে আলোচনা)</li>
-            <li>Abusing nicknames (নিকনেমের অপব্যবহার)</li>
-            <li>Threatening behavior (কাউকে হুমকি দেওয়া)</li>
-            <li>Scamming (<span class="allowed">LIFESTEAL এ অনুমতি আছে</span>)</li>
-            <li>Trapping and killing players (<span class="allowed">TELEPORTATION KILLS ALLOWED ON LIFESTEAL</span>)</li>
-            <li>IP-grabbing (আইপি সংগ্রহের চেষ্টা)</li>
-            <li>Abusing alts (অল্টারনেটিভ অ্যাকাউন্টের অপব্যবহার)</li>
+            <li>চ্যাট বক্সে <span class="highlight">স্প্যাম (Spam)</span> করা সম্পূর্ণ নিষিদ্ধ।</li>
+            <li>কাউকে <span class="highlight">Spawn Kill</span> করা যাবে না।</li>
+            <li>বিনা কারণে কোনো প্লেয়ারকে <span class="highlight">Kill</span> করা যাবে না।</li>
+            <li>অন্যের বানানো কোনো <span class="highlight">Build</span> বা ঘর ভাঙা যাবে না।</li>
+            <li>সবার সাথে ভালো ব্যবহার করতে হবে, <span class="highlight">খারাপ ব্যবহার</span> করা নিষিদ্ধ।</li>
+            <li>সব সময় <span class="highlight">Staff</span> বা মডারেটরদের কথা মেনে চলতে হবে।</li>
+            <li>সার্ভারের সুন্দর্য বৃদ্ধির জন্য <span class="highlight">Spawn</span> এরিয়াতে সুন্দর কিছু বিল্ড করতে হবে।</li>
+            <li>যেকোনো ধরণের <span class="highlight">Hack</span> ব্যবহার করলে সরাসরি <span class="highlight">IP BAN</span> করা হবে।</li>
+            <li>অন্য কোনো সার্ভারের লিংক দিয়ে <span class="highlight">Promotion</span> করা যাবে না। (অতিরিক্ত নিয়ম)</li>
+            <li>গেমের কোনো <span class="highlight">Bug বা Glitch</span> ব্যবহার করে সুবিধা নেওয়া যাবে না। (অতিরিক্ত নিয়ম)</li>
         </ul>
         
-        <p style="margin-top: 20px; font-size: 0.85rem; color: #ff4d4d; font-weight: bold; text-align: center;">
-            সাধারণভাবে, যা ইন-গেমে গ্রহণযোগ্য নয়, তা ডিসকর্ডেও গ্রহণযোগ্য নয়।
+        <p style="margin-top: 25px; font-size: 0.9rem; color: #ff4d4d; font-weight: bold; text-align: center; border: 1px dashed #ff4d4d; padding: 10px;">
+            নিয়ম ভঙ্গ করলে তাৎক্ষণিক ব্যবস্থা নেওয়া হবে।
         </p>
     </div>
 </section>
