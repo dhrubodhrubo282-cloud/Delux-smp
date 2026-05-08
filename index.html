@@ -5,95 +5,174 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delux SMP | Best Minecraft Server</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0a0a0a; color: white; text-align: center; line-height: 1.6; }
-        
-        header { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/dhrubodhruvo282-cloud/Delux-smp/main/43982.jpg'); 
-            background-size: cover; 
-            background-position: center;
-            padding: 100px 20px; 
-            border-bottom: 3px solid #ff4d4d; 
+        /* এনিমেশনের মূল কোড */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 { font-size: 3.5rem; color: #ff4d4d; text-shadow: 3px 3px 10px rgba(0,0,0,0.8); margin: 0; }
-        .btn-group { margin-top: 25px; }
-        .btn { display: inline-block; padding: 12px 25px; margin: 10px; background: #ff4d4d; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #cc0000; transform: scale(1.05); }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255, 77, 77, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 77, 77, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(255, 77, 77, 0.5); }
+        }
 
-        /* Rules Container (Now at Top) */
-        .rules-container { max-width: 800px; margin: 40px auto; background: #121212; border-radius: 10px; overflow: hidden; text-align: left; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: white; 
+            text-align: center; 
+            line-height: 1.6;
+            background-color: #050505; /* ভিডিও লোড না হলে কালো ব্যাকগ্রাউন্ড */
+            overflow-x: hidden;
+        }
+
+        /* ভিডিও ব্যাকগ্রাউন্ড সেটআপ */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -2; /* লেখাগুলোর অনেক নিচে */
+            object-fit: cover;
+            /* Minecraft থিমের একটি শান্ত দৃশ্য */
+            background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0MWV3bnZ3bnZ3bnZ3bnZ3bnZ3bnZ3bnZ3bnZ3biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aM96E1m8q8A8g/giphy.gif');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ভিডিওর ওপর কালো আস্তরণ (Overlay) - লেখা স্পষ্ট করার জন্য */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75); /* উজ্জ্বলতা কমানোর জন্য ডার্ক লেয়ার */
+            z-index: -1; /* ভিডিওর ওপরে, লেখার নিচে */
+        }
         
-        .rules-nav { background: #181818; padding: 15px; border-bottom: 1px solid #333; }
-        .rules-nav span { color: #ff4d4d; font-weight: bold; border-left: 3px solid #ff4d4d; padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        /* কন্টেন্ট এরিয়া */
+        .content-wrapper {
+            position: relative;
+            z-index: 1; /* সব লেখা এবং বক্স এই লেয়ারে থাকবে */
+            padding-bottom: 50px;
+        }
+
+        header { 
+            background: rgba(0,0,0,0.4); 
+            padding: 100px 20px; 
+            border-bottom: 3px solid #ff4d4d;
+            animation: fadeInUp 1s ease-out; /* হেডার এনিমেশন */
+        }
+
+        h1 { font-size: 3.5rem; color: #ff4d4d; text-shadow: 3px 3px 15px rgba(0,0,0,1); margin: 0; }
+        p { text-shadow: 1px 1px 5px rgba(0,0,0,1); }
+        
+        .btn { 
+            display: inline-block; padding: 12px 25px; margin: 10px; 
+            background: #ff4d4d; color: white; text-decoration: none; 
+            border-radius: 5px; font-weight: bold; transition: 0.4s; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* বাটনে মাউস নিলে গ্লো করবে */
+        .btn:hover { 
+            background: #cc0000; 
+            transform: scale(1.08); 
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.7);
+        }
+
+        /* Rules Section এনিমেশন */
+        .rules-container { 
+            max-width: 800px; margin: 40px auto; 
+            background: rgba(15, 15, 15, 0.9); /* লেখা স্পষ্ট করার জন্য গাঢ় ব্যাকগ্রাউন্ড */
+            border-radius: 10px; overflow: hidden; text-align: left; 
+            border: 1px solid #333; 
+            animation: fadeInUp 1.2s ease-out; /* নিচ থেকে ভেসে আসবে */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px); /* ব্যাকগ্রাউন্ড হালকা ঘোলা দেখাবে */
+        }
+        
+        .rules-nav { background: #1a1a1a; padding: 15px; border-bottom: 1px solid #333; }
+        .rules-nav span { color: #ff4d4d; font-weight: bold; border-left: 3px solid #ff4d4d; padding-left: 15px; }
 
         .rules-content { padding: 30px; }
-        .rules-content h2 { color: #fff; border-bottom: 1px solid #333; padding-bottom: 10px; text-align: center; margin-top: 0; }
-        .rules-list { list-style: none; padding: 0; margin-top: 20px; }
-        .rules-list li { padding: 12px 0; color: #ccc; border-bottom: 1px solid #1e1e1e; font-size: 1rem; display: flex; align-items: center; }
-        .rules-list li::before { content: "✔"; color: #ff4d4d; font-weight: bold; margin-right: 15px; }
+        .rules-content h2 { text-shadow: 1px 1px 5px rgba(0,0,0,1); margin-top: 0;}
+        .rules-list li { 
+            padding: 12px 0; color: #eee; border-bottom: 1px solid #222; 
+            transition: 0.3s; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,1);
+        }
         
-        .highlight { color: #ff4d4d; font-weight: bold; }
+        /* লিস্টের ওপর মাউস নিলে লেখা উজ্জ্বল হবে */
+        .rules-list li:hover { color: #fff; padding-left: 10px; background: rgba(255,77,77,0.05); }
 
-        /* IP Section (Now at Bottom) */
-        .info-section { padding: 60px 20px; background: #000; border-top: 1px solid #222; }
-        .ip-box { background: #111; padding: 25px; border-radius: 10px; display: inline-block; border: 2px solid #ff4d4d; margin-top: 10px; }
-        .ip-text { font-size: 1.4rem; color: #fff; letter-spacing: 1px; }
-        .port-text { font-size: 1.1rem; color: #ff4d4d; margin-top: 5px; }
+        /* IP Box এনিমেশন */
+        .info-section { 
+            padding: 60px 20px;
+            animation: fadeInUp 1.5s ease-out; 
+        }
+        .info-section h2 { text-shadow: 1px 1px 5px rgba(0,0,0,1); }
 
-        footer { padding: 20px; font-size: 0.8rem; color: #555; }
+        .ip-box { 
+            background: rgba(10, 10, 10, 0.95); 
+            padding: 25px; border-radius: 10px; 
+            display: inline-block; border: 2px solid #ff4d4d; 
+            animation: glow 3s infinite; /* আইপি বক্স সবসময় হালকা জ্বলবে */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        footer { padding: 25px; background: rgba(0,0,0,0.8); color: #777; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>DELUX SMP</h1>
-    <p>সেরা মাইনক্রাফট অভিজ্ঞতার জন্য আমাদের সাথে যোগ দিন</p>
-    <div class="btn-group">
-        <a href="https://discord.gg/fHjZKPGPxB" target="_blank" class="btn">DISCORD</a>
-        <a href="store.html" class="btn">WEB STORE</a>
-        <a href="#" class="btn">VOTE</a>
-    </div>
-</header>
+    <div id="bg-video"></div>
+    <div class="video-overlay"></div>
 
-<section class="rules-container">
-    <div class="rules-nav">
-        <span>Official Server Rules</span>
-    </div>
-    
-    <div class="rules-content">
-        <h2>সার্ভারের নিয়মাবলী</h2>
-        
-        <ul class="rules-list">
-            <li>চ্যাট বক্সে <span class="highlight">স্প্যাম (Spam)</span> করা সম্পূর্ণ নিষিদ্ধ।</li>
-            <li>কাউকে <span class="highlight">Spawn Kill</span> করা যাবে না।</li>
-            <li>বিনা কারণে কোনো প্লেয়ারকে <span class="highlight">Kill</span> করা যাবে না।</li>
-            <li>অন্যের বানানো কোনো <span class="highlight">Build</span> বা ঘর ভাঙা যাবে না।</li>
-            <li>সবার সাথে ভালো ব্যবহার করতে হবে, <span class="highlight">খারাপ ব্যবহার</span> করা নিষিদ্ধ।</li>
-            <li>সব সময় <span class="highlight">Staff</span> বা মডারেটরদের কথা মেনে চলতে হবে।</li>
-            <li>সার্ভারের সুন্দর্য বৃদ্ধির জন্য <span class="highlight">Spawn</span> এরিয়াতে সুন্দর কিছু বিল্ড করতে হবে।</li>
-            <li>যেকোনো ধরণের <span class="highlight">Hack</span> ব্যবহার করলে সরাসরি <span class="highlight">IP BAN</span> করা হবে।</li>
-            <li>অন্য কোনো সার্ভারের লিংক দিয়ে <span class="highlight">Promotion</span> করা যাবে না।</li>
-            <li>গেমের কোনো <span class="highlight">Bug বা Glitch</span> ব্যবহার করে সুবিধা নেওয়া যাবে না।</li>
-        </ul>
-        
-        <p style="margin-top: 25px; font-size: 0.9rem; color: #ff4d4d; font-weight: bold; text-align: center; border: 1px dashed #ff4d4d; padding: 10px;">
-            নিয়ম ভঙ্গ করলে তাৎক্ষণিক ব্যবস্থা নেওয়া হবে।
-        </p>
-    </div>
-</section>
+    <div class="content-wrapper">
+        <header>
+            <h1>DELUX SMP</h1>
+            <p>সেরা মাইনক্রাফট অভিজ্ঞতার জন্য আমাদের সাথে যোগ দিন</p>
+            <div class="btn-group">
+                <a href="https://discord.gg/fHjZKPGPxB" target="_blank" class="btn">DISCORD</a>
+                <a href="store.html" class="btn">WEB STORE</a>
+                <a href="#" class="btn">VOTE</a>
+            </div>
+        </header>
 
-<div class="info-section">
-    <h2>Play Now</h2>
-    <p>নিচের আইপি ব্যবহার করে সার্ভারে জয়েন করুন:</p>
-    <div class="ip-box">
-        <div class="ip-text">IP: <strong>play.deluxsmp.fun</strong></div>
-        <div class="port-text">Port: <strong>20006</strong></div>
-    </div>
-</div>
+        <section class="rules-container">
+            <div class="rules-nav">
+                <span>Official Server Rules</span>
+            </div>
+            <div class="rules-content">
+                <h2>সার্ভারের নিয়মাবলী</h2>
+                <ul style="list-style: none; padding: 0;" class="rules-list">
+                    <li>✔ চ্যাট বক্সে স্প্যাম (Spam) করা নিষিদ্ধ।</li>
+                    <li>✔ কাউকে Spawn Kill করা যাবে না।</li>
+                    <li>✔ বিনা কারণে কোনো প্লেয়ারকে Kill করা যাবে না।</li>
+                    <li>✔ অন্যের কোনো Build বা ঘর ভাঙা যাবে না।</li>
+                    <li>✔ সবার সাথে ভালো ব্যবহার করতে হবে।</li>
+                    <li>✔ Staff বা মডারেটরদের কথা মেনে চলতে হবে।</li>
+                    <li>✔ Spawn এরিয়াতে সুন্দর কিছু বিল্ড করতে হবে।</li>
+                    <li>✔ Hack ব্যবহার করলে IP BAN।</li>
+                </ul>
+            </div>
+        </section>
 
-<footer>
-    &copy; 2026 Delux SMP. All rights reserved.
-</footer>
+        <div class="info-section">
+            <h2>Play Now</h2>
+            <p>নিচের আইপি ব্যবহার করে সার্ভারে জয়েন করুন:</p>
+            <div class="ip-box">
+                <div style="font-size: 1.4rem; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,1);">IP: <strong>play.deluxsmp.fun</strong></div>
+                <div style="color: #ff4d4d; text-shadow: 1px 1px 3px rgba(0,0,0,1);">Port: <strong>20006</strong></div>
+            </div>
+        </div>
+
+        <footer>&copy; 2026 Delux SMP. All rights reserved.</footer>
+    </div>
 
 </body>
 </html>
