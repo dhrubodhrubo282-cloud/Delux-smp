@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delux SMP | Best Minecraft Server</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0a0a0a; color: white; text-align: center; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0a0a0a; color: white; text-align: center; line-height: 1.6; }
         
-        /* এখানে আপনার দেওয়া ছবিটি ব্যাকগ্রাউন্ড হিসেবে যোগ করা হয়েছে */
         header { 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/dhrubodhruvo282-cloud/Delux-smp/main/43982.jpg'); 
             background-size: cover; 
@@ -20,10 +19,28 @@
         .btn-group { margin-top: 25px; }
         .btn { display: inline-block; padding: 12px 25px; margin: 10px; background: #ff4d4d; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; }
         .btn:hover { background: #cc0000; transform: scale(1.05); }
-        .info-section { padding: 50px 20px; background: rgba(10,10,10,0.9); }
+
+        /* Rules Container */
+        .rules-container { max-width: 800px; margin: 50px auto; background: #121212; border-radius: 10px; overflow: hidden; text-align: left; border: 1px solid #333; }
+        
+        /* Sidebar/Tab Style */
+        .rules-nav { background: #181818; padding: 10px; display: flex; border-bottom: 1px solid #333; }
+        .rules-nav div { padding: 10px 20px; color: #888; font-weight: bold; cursor: pointer; }
+        .rules-nav div.active { color: #ff4d4d; border-left: 3px solid #ff4d4d; background: #222; }
+
+        .rules-content { padding: 30px; }
+        .rules-content h2 { color: #fff; border-bottom: 1px solid #333; padding-bottom: 10px; text-align: center; }
+        .rules-list { list-style: none; padding: 0; margin-top: 20px; }
+        .rules-list li { padding: 8px 0; color: #ccc; border-bottom: 1px solid #1e1e1e; font-size: 0.95rem; }
+        .rules-list li::before { content: "• "; color: #ff4d4d; font-weight: bold; margin-right: 10px; }
+        
+        .allowed { color: #2ecc71; font-weight: bold; }
+
+        .info-section { padding: 50px 20px; background: #000; }
         .ip-box { background: #111; padding: 25px; border-radius: 10px; display: inline-block; border: 2px solid #ff4d4d; margin-top: 20px; }
         .ip-text { font-size: 1.4rem; color: #fff; letter-spacing: 1px; }
         .port-text { font-size: 1.1rem; color: #ff4d4d; margin-top: 5px; }
+
         footer { padding: 20px; font-size: 0.8rem; color: #555; }
     </style>
 </head>
@@ -41,12 +58,47 @@
 
 <div class="info-section">
     <h2>Play Now</h2>
-    <p>নিচের আইপি ব্যবহার করে সার্ভারে জয়েন করুন:</p>
     <div class="ip-box">
         <div class="ip-text">IP: <strong>play.deluxsmp.fun</strong></div>
         <div class="port-text">Port: <strong>20006</strong></div>
     </div>
 </div>
+
+<section class="rules-container">
+    <div class="rules-nav">
+        <div class="active">MINECRAFT SERVER</div>
+    </div>
+    
+    <div class="rules-content">
+        <h2>Delux SMP Rules</h2>
+        <p style="color: #888; font-size: 0.9rem;">আমাদের সার্ভারে নিচের কাজগুলো কঠোরভাবে নিষিদ্ধ:</p>
+        
+        <ul class="rules-list">
+            <li>Spamming (স্প্যামিং করা)</li>
+            <li>Disrespectful behavior (অসম্মানজনক আচরণ)</li>
+            <li>Bigotry (বর্ণবাদ বা লিঙ্গ বৈষম্যমূলক মন্তব্য)</li>
+            <li>Griefing/Stealing (<span class="allowed">LIFESTEAL এ অনুমতি আছে</span>)</li>
+            <li>Staff disrespect (স্টাফদের সাথে খারাপ ব্যবহার)</li>
+            <li>Advertising/Self-promotion (বিজ্ঞাপন দেওয়া)</li>
+            <li>Use of unfair advantage (অসাধু উপায় অবলম্বন)</li>
+            <li>Client modifications (হ্যাক বা অতিরিক্ত সুবিধা দেয় এমন মোড)</li>
+            <li>Bypassing disciplinary actions (শাস্তি এড়ানোর চেষ্টা)</li>
+            <li>Fighting/Drama (ঝগড়া বা অপ্রয়োজনীয় ঝামেলা)</li>
+            <li>Use of inappropriate usernames or skins (অশালীন নাম বা স্কিন)</li>
+            <li>Discussing politics/religion (রাজনীতি বা ধর্ম নিয়ে আলোচনা)</li>
+            <li>Abusing nicknames (নিকনেমের অপব্যবহার)</li>
+            <li>Threatening behavior (কাউকে হুমকি দেওয়া)</li>
+            <li>Scamming (<span class="allowed">LIFESTEAL এ অনুমতি আছে</span>)</li>
+            <li>Trapping and killing players (<span class="allowed">TELEPORTATION KILLS ALLOWED ON LIFESTEAL</span>)</li>
+            <li>IP-grabbing (আইপি সংগ্রহের চেষ্টা)</li>
+            <li>Abusing alts (অল্টারনেটিভ অ্যাকাউন্টের অপব্যবহার)</li>
+        </ul>
+        
+        <p style="margin-top: 20px; font-size: 0.85rem; color: #ff4d4d; font-weight: bold; text-align: center;">
+            সাধারণভাবে, যা ইন-গেমে গ্রহণযোগ্য নয়, তা ডিসকর্ডেও গ্রহণযোগ্য নয়।
+        </p>
+    </div>
+</section>
 
 <footer>
     &copy; 2026 Delux SMP. All rights reserved.
